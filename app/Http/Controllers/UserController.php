@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -32,24 +33,24 @@ class UserController extends Controller
         //         ->whereNull("company_id")->delete();
         // }
 
-        $Armenia = DB::table('countries')
-            ->where("name", "Armenia")->get();
-        $Artsakh = $Armenia[0];
-        $Artsakh->name = "Artsakh";
-        $new = json_encode($Artsakh);
-        $Artsakh = json_decode($new, true);
-        unset($Artsakh["id"]);
-        DB::table('countries')
-            ->insert(
-                $Artsakh
-            );
+        // $Armenia = DB::table('countries')
+        //     ->where("name", "Armenia")->get();
+        // $Artsakh = $Armenia[0];
+        // $Artsakh->name = "Artsakh";
+        // $new = json_encode($Artsakh);
+        // $Artsakh = json_decode($new, true);
+        // unset($Artsakh["id"]);
+        // DB::table('countries')
+        //     ->insert(
+        //         $Artsakh
+        //     );
 
-        DB::table('countries')
-            ->updateOrInsert(
-                $Artsakh
-            );
+        // DB::table('countries')
+        //     ->updateOrInsert(
+        //         $Artsakh
+        //     );
+
+        // $user = Auth::user();
+        // echo $user?->name;
     }
 }
-
-
-
