@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // $users = DB::table('users')
         //     ->leftJoin('companies', 'users.company_id', '=', 'companies.id')
@@ -50,7 +50,13 @@ class UserController extends Controller
         //         $Artsakh
         //     );
 
-        // $user = Auth::user();
-        // echo $user?->name;
+        $user = Auth::user();
+        echo $user?->name;
+
+        $param = $request->all();
+        // dd($request->fullUrl());
+        // dd($request->method());
+        dd($request->isMethod('get'));
+
     }
 }

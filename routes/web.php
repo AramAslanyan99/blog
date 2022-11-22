@@ -8,6 +8,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\CollectionController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PostController;
 
 
 
@@ -108,7 +109,7 @@ Route::get(
 Route::get(
     'key_collection',
     [CollectionController::class, 'read_keys']
-    );
+);
 
 Auth::routes();
 
@@ -118,7 +119,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('cars', 
-    [CarController::class,
-    "index"]
+Route::get(
+    'cars',
+    [
+        CarController::class,
+        "index"
+    ]
+);
+Route::get('add-blog-post-form', [PostController::class, 'index']);
+Route::post('store-form', [PostController::class, 'store']);
+
+Route::get(
+    'json',
+    function () {
+        return response()->json([
+            'name' => 'Barack Obama',
+            'state' => 'Illinois'
+        ]);
+    }
 );
