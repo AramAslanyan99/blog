@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ABCController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CacheController;
 use App\Http\Controllers\CarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -7,8 +10,18 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\IdentitycardController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestFormController;
+
+
+
+
+
 
 
 
@@ -138,3 +151,29 @@ Route::get(
         ]);
     }
 );
+Route::get('testForm', [TestFormController::class, 'index']);
+Route::post('test-form', [TestFormController::class, 'test']);
+
+Route::get('/test', [TestController::class,'index'])
+->middleware(['age','role:editor']);
+
+Route::get('/terminate', [ABCController::class,
+'index']);
+
+Route::get('session/get', [SessionController::class, 'accessSessionData']);
+Route::get('session/set', [SessionController::class, 'storeSessionData']);
+Route::get('session/remove', [SessionController::class, 'deleteSessionData']);
+
+Route::get('cache/put', [CacheController::class, 'put']);
+Route::get('cache/get', [CacheController::class, 'get']);
+
+Route::get('/second', [ABCController::class,
+'index']);
+Route::get('/first', [TestFormController::class,
+'index'])->middleware();
+
+Route::get('/identity',[IdentitycardController::class,'index']);
+Route::get('/Userid',[UserController::class,'index']);
+
+Route::get('/brand',[BrandController::class,'index']);
+Route::get('/product',[ProductController::class,'index']);

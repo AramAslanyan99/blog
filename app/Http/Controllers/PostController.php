@@ -19,10 +19,10 @@ class PostController extends Controller
             'title' => 'required|min:6',
             'description' => 'required|min:3|max:100'
         ],
-        [
-            'title.required' => 'Լրացրեք title',
-            'description.required' => 'Լրացրեք description',
-        ]
+        // [
+        //     'title.required' => 'Լրացրեք title',
+        //     'description.required' => 'Լրացրեք description',
+        // ]
 
     );
 

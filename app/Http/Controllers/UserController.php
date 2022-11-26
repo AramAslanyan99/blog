@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -50,13 +52,21 @@ class UserController extends Controller
         //         $Artsakh
         //     );
 
-        $user = Auth::user();
-        echo $user?->name;
+        // $user = Auth::user();
+        // echo $user?->name;
 
-        $param = $request->all();
+        // $param = $request->all();
         // dd($request->fullUrl());
         // dd($request->method());
-        dd($request->isMethod('get'));
+        // dd($request->isMethod('get'));
+
+        $user = User::with(['identity'])->get();
+        foreach($user as $val){
+        //   echo "<pre>"  ;print_r($val->toArray()); echo "</pre>";
+          echo '<b>User Name</b> : '. $val->name.'<br />';
+          echo '<b>Identity Number </b> : '. $val->identity?->identity_number .'<br />';
+          echo '--------------------------------------------- <br/>';
+        }
 
     }
 }
