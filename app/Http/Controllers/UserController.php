@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request,$id)
     {
         // $users = DB::table('users')
         //     ->leftJoin('companies', 'users.company_id', '=', 'companies.id')
@@ -60,13 +60,15 @@ class UserController extends Controller
         // dd($request->method());
         // dd($request->isMethod('get'));
 
-        $user = User::with(['identity'])->get();
-        foreach($user as $val){
-        //   echo "<pre>"  ;print_r($val->toArray()); echo "</pre>";
-          echo '<b>User Name</b> : '. $val->name.'<br />';
-          echo '<b>Identity Number </b> : '. $val->identity?->identity_number .'<br />';
-          echo '--------------------------------------------- <br/>';
+        $user = User::with(['company'])->find($id);
+        dd($user->toArray());
+
+        // foreach($user as $val){
+        // //   echo "<pre>"  ;print_r($val->toArray()); echo "</pre>";
+        //   echo '<b>User Name</b> : '. $val->name.'<br />';
+        //   echo '<b>Identity Number </b> : '. $val->identity?->identity_number .'<br />';
+        //   echo '--------------------------------------------- <br/>';
         }
 
     }
-}
+

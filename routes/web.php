@@ -11,6 +11,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\IdentitycardController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PostController;
@@ -187,3 +188,6 @@ Route::get('/category/show-data',[CategoryController::class,'showData']);
 
 Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
+
+Route::get('/company/{id}',[CompanyController::class,'index']);
+Route::get('/user/{id}',[UserController::class,'index']);
