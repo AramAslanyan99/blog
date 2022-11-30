@@ -11,6 +11,18 @@ class Product extends Model
     protected $guarded = [];
     public function brand()
     {
-      return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brand::class);
+    }
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class)->withTimestamps();
+    }
+    public function getNameAttribute()
+    {
+        return ucfirst($this->title);
+    }
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = strtolower($value);
     }
 }
